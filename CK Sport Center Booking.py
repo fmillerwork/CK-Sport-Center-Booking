@@ -9,6 +9,7 @@ from enum import Enum
 
 
 SEARCH_DELAY = 300 # 5 minutes
+TIME_BEFORE_CLOSURE = 300 # 5 minutes
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
@@ -55,7 +56,7 @@ def searchAvailableSlot(slot: Slot, date, page):
     
 def getSport(sportNumber) -> Sport:
     for sport in [sport for sport in Sport]:
-        if sportNumber == int(sport.value):
+        if int(sportNumber) == int(sport.value):
             return sport
 
 def displaySlot(slot: Slot):
@@ -152,6 +153,6 @@ while not isAllFound(sessionsInput):
         time.sleep(SEARCH_DELAY)
 # endregion
 
-print("Fin de la recherche.")
 driver.quit()
-time.sleep(500)
+print("\n\n****** Fin de la recherche ******\nFermeture dans", TIME_BEFORE_CLOSURE / 60, "minutes.")
+time.sleep(TIME_BEFORE_CLOSURE)
