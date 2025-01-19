@@ -120,9 +120,9 @@ def isAllFound(sessions: List[Session]):
             
 # endregion
 
-print("**************************")
-print("         BAD BOT          ")
-print("**************************")
+print("***************************")
+print("* CK Sport Center Booking *")
+print("***************************")
 
 # region Inputs  
 datesInput = input("Dates (AAAA-MM-JJ) séparés par une virgule : ").split(",")
