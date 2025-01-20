@@ -15,7 +15,6 @@ options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--log-level=1')
 driver = webdriver.Chrome(options=options)
-driver.maximize_window()
 #driver.implicitly_wait(10)
 #driver = webdriver.Chrome()
 
