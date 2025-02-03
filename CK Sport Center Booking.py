@@ -6,7 +6,7 @@ from selenium.common.exceptions import InvalidSelectorException, NoSuchElementEx
 import time
 from win11toast import notify
 from enum import Enum
-
+import datetime
 
 SEARCH_DELAY = 300 # 5 minutes
 TIME_BEFORE_CLOSURE = 300 # 5 minutes
@@ -40,7 +40,6 @@ class Sport(Enum):
 # endregion
     
 # region Functions
-
 def searchAvailableSlot(slot: Slot, date, page):
     try:
         xpath = "/html/body/div[7]/article/div[7]/div/table/tbody/tr[" + str(locateSlotRow(slot)) + "]/td[2]"
@@ -49,7 +48,7 @@ def searchAvailableSlot(slot: Slot, date, page):
         for court in courts:
             if court.get_attribute("class") == CLASS:
                 slot.pageWhereIsAvailable = page
-                print("   => Court", court.text,"|", displaySlot(slot), "|", date)
+                print("   => Court disponible :", court.text,"|", displaySlot(slot), "|", date)
     except:
         pass
     
@@ -135,7 +134,7 @@ print("\n\n****** Début de la recherche ******")
 while not isAllFound(sessionsInput):
     for session in sessionsInput:
         for slot in session.slots:
-            print("\n*** Recherche de session ***\n", displaySlot(slot), "le", session.date, "\n")
+            print("\n*** Recherche de session (", datetime.datetime.now().strftime("%H:%M:%S"), ") ***\n", displaySlot(slot), "le", session.date, "\n")
             if(sportInput == Sport.Badminton):
                 driver.get("https://ck-sportcenter.lu/reservations_week.php?action=showReservations&type_id=2&date=" + session.date + "&page=1")
             else:
